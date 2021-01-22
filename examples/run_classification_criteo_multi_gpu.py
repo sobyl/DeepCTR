@@ -4,7 +4,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder, MinMaxScaler
 from tensorflow.python.keras.utils import multi_gpu_model
 
-from deepctr.inputs import SparseFeat, DenseFeat, get_feature_names
+from deepctr.feature_column import SparseFeat, DenseFeat,get_feature_names
 from deepctr.models import DeepFM
 
 if __name__ == "__main__":
@@ -37,7 +37,7 @@ if __name__ == "__main__":
 
     # 3.generate input data for model
 
-    train, test = train_test_split(data, test_size=0.2)
+    train, test = train_test_split(data, test_size=0.2, random_state=2020)
 
     train_model_input = {name: train[name] for name in feature_names}
     test_model_input = {name: test[name] for name in feature_names}

@@ -4,7 +4,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
 
 from deepctr.models import DeepFM
-from deepctr.inputs import SparseFeat,get_feature_names
+from deepctr.feature_column import SparseFeat,get_feature_names
 
 if __name__ == "__main__":
 
@@ -25,7 +25,7 @@ if __name__ == "__main__":
     feature_names = get_feature_names(linear_feature_columns + dnn_feature_columns)
 
     # 3.generate input data for model
-    train, test = train_test_split(data, test_size=0.2)
+    train, test = train_test_split(data, test_size=0.2, random_state=2020)
     train_model_input = {name:train[name].values for name in feature_names}
     test_model_input = {name:test[name].values for name in feature_names}
 
